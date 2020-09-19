@@ -8,6 +8,24 @@ user = 'SK20841af8008834611f84e7590630f467'
 pwd = 'oRob0tiWhYPm9gLQChE9FxX1vViOsI2U'
 
 
+def create_transform(b):
+    d = b
+    a = {}
+    a["id"] = d["sid"]
+    a["roomUniqueName"] = d["unique_name"]
+    a["roomSID"] = None
+    a["rooomstatus"] = d["status"]
+    a["maxparticipants"] = d["max_participants"]
+    a["type"] = d["type"]
+    a["startAt"] = None
+    a["endDt"] = None
+    a["duration"] = 0
+    a["createdDt"] = d["date_created"]
+    a["modifiedDt"] = d["date_updated"]
+    a["participants"] = []
+    return a
+
+
 class CreateRoom(Resource):
     def post(self):
         request = r.get_json()
