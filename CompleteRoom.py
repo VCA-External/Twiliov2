@@ -1,10 +1,11 @@
 from flask import request as r
 from flask_restful import Resource
 import requests as req
+import json
 from requests.auth import HTTPBasicAuth
-user = 'SK20841af8008834611f84e7590630f467'
-pwd = 'oRob0tiWhYPm9gLQChE9FxX1vViOsI2U'
 
+with open('data.json') as t:
+  d1 =json.loads(t.read())
 
 def cfr(b):
     d = b
@@ -29,8 +30,8 @@ class CompleteRoom(Resource):
         payload = {
             "Status": "completed"
         }
-        call = req.post("https://video.twilio.com/v1/Rooms/" + uniqueName,
-                        data=payload, headers=head, auth=HTTPBasicAuth(user, pwd))
+         call = req.post("https://video.twilio.com/v1/Rooms/"+ uniqueName,data=payload,headers=head, 
+                         auth=HTTPBasicAuth(d1["user"],d1["pwd"]))
         # print(call.json())
 
         if call.status_code == 404:
